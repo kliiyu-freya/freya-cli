@@ -1,5 +1,0 @@
-- name: dashboard
-  version: latest
-  image: freya-dashboard:latest
-  ports:
-  - 6673

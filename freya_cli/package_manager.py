@@ -28,7 +28,8 @@ class DecodedPackage():
             'name': package_data['name'],
             'version': package_data['version'],
             'image': package_data['image'],
-            'ports': package_data['ports']
+            'ports': package_data['ports'] if 'ports' in package_data else None,
+            'ipv4': package_data['ipv4'] if 'ipv4' in package_data else None
         }
 
 
@@ -85,3 +86,11 @@ class PackageManager():
                     print(f"{package['name']}, version: {package['version']}")
         except FileNotFoundError:
             print("No packages installed.")
+            
+    def get_packages(self) -> list[Package]:
+        try:
+            with open("packages.yml", "r") as file:
+                packages = yaml.load(file, Loader=yaml.FullLoader)
+                return [package for package in packages]
+        except FileNotFoundError:
+            return []

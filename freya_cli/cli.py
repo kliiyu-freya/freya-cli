@@ -1,7 +1,7 @@
 import click
 import re
 
-from freya_cli.composer import compose, run_compose, stop_compose
+from freya_cli.composer import run_compose, stop_compose, restart_compose
 from freya_cli.package_manager import PackageManager, Package
 
 package_manager = PackageManager()
@@ -27,8 +27,7 @@ def stop():
 def restart():
     """Restart Freya."""
     click.echo("Restarting Freya...")
-    stop_compose()
-    run_compose()
+    restart_compose()
     
 @click.command(name="version")
 def version():
@@ -44,7 +43,7 @@ def status(status):
 @click.command(name="install")
 @click.argument('package_name', type=str, required=True)
 def install(package_name: str):
-    """Install a package. install <name>:<version>"""
+    """Install a package. 'freya install <name>:<version>'"""
     name = package_name.split(":")[0]
     
     no_version_specified = lambda: (click.echo("No version specified, installing latest version."), "latest")[1]
