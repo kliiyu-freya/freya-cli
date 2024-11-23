@@ -2,6 +2,7 @@ import yaml
 import subprocess
 
 from freya_cli.package_manager import PackageManager
+from freya_cli.default_packages import default_packages # TODO: reserve ipv4 addresses for default packages
 
 package_manager = PackageManager()
 
