@@ -8,7 +8,7 @@ services:
       freya:
         ipv4_address: 192.168.168.2
   dashboard:
-    image: hello-world:latest
+    image: ghcr.io/kliiyu-freya/dashboard:latest
     ports:
     - 6673:6673
     networks:
