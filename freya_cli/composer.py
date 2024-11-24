@@ -26,7 +26,6 @@ def assign_ip_addresses(packages):
                     base_ip[2] += 1
                     if base_ip[2] > 254:
                         raise ValueError("Ran out of IP addresses in the subnet")
-    print(taken_ips)
 
 def compose() -> str:
     """Generate a docker-compose.yml file."""

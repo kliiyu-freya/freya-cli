@@ -1,7 +1,7 @@
 core = {
     "name": "core",
     "version": "latest",
-    "image": "hello-world:latest",
+    "image": "ghcr.io/kliiyu-freya/freya:latest",
     "ports": [6672],
     "ipv4": "192.168.168.2"
 }

@@ -1,7 +1,7 @@
 version: '3'
 services:
   core:
-    image: hello-world:latest
+    image: ghcr.io/kliiyu-freya/freya:latest
     ports:
     - 6672:6672
     networks:
