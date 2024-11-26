@@ -2,17 +2,15 @@ import yaml
 import subprocess
 
 from freya_cli.package_manager import PackageManager
-from freya_cli.default_packages import default_packages # TODO: reserve ipv4 addresses for default packages
+from freya_cli.default_packages import default_packages
 
 package_manager = PackageManager()
 
 def assign_ip_addresses(packages):
     """Assign IP addresses to packages if not already assigned."""
     base_ip = [192, 168, 168, 2]
-    taken_ips = set()
-    for package in packages:
-        if "ipv4" in package:
-            taken_ips.add(package["ipv4"])
+    taken_ips = {package["ipv4"] for package in default_packages if "ipv4" in package}
+    taken_ips.update(package["ipv4"] for package in packages if "ipv4" in package)
     
     for package in packages:
         if "ipv4" not in package:

@@ -1,5 +1,19 @@
 version: '3'
 services:
+  core:
+    image: ghcr.io/kliiyu-freya/freya:latest
+    ports:
+    - 6672:6672
+    networks:
+      freya:
+        ipv4_address: 192.168.168.2
+  dashboard:
+    image: ghcr.io/kliiyu-freya/dashboard:latest
+    ports:
+    - 6673:6673
+    networks:
+      freya:
+        ipv4_address: 192.168.168.4
   mqtt_broker:
     image: eclipse-mosquitto:latest
     ports:
@@ -8,20 +22,6 @@ services:
     networks:
       freya:
         ipv4_address: 192.168.168.3
-  core:
-    image: hello-world:latest
-    ports:
-    - 6672:6672
-    networks:
-      freya:
-        ipv4_address: 192.168.168.2
-  dashboard:
-    image: hello-world:latest
-    ports:
-    - 6673:6673
-    networks:
-      freya:
-        ipv4_address: 192.168.168.4
 networks:
   freya:
     driver: bridge

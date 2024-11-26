@@ -1,7 +1,7 @@
 core = {
     "name": "core",
     "version": "latest",
-    "image": "hello-world:latest",
+    "image": "ghcr.io/kliiyu-freya/freya:latest",
     "ports": [6672],
     "ipv4": "192.168.168.2"
 }
@@ -17,7 +17,7 @@ mqtt_broker = {
 dashboard = {
     "name": "dashboard",
     "version": "latest",
-    "image": "hello-world:latest",
+    "image": "ghcr.io/kliiyu-freya/dashboard:latest",
     "ports": [6673],
     "ipv4": "192.168.168.4"
 }
