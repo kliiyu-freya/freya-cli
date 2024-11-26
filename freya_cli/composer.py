@@ -34,7 +34,6 @@ def compose() -> str:
     
     with open("docker-compose.yml", "w") as file:
         compose_file = {
-            'version': '3',
             'services': {},
             'networks': {
                 'freya': {
@@ -70,11 +69,11 @@ def compose() -> str:
 def run_compose():
     """Run docker-compose."""
     compose()
-    subprocess.run(["docker-compose", "-p", "freya", "up", "-d"])
+    subprocess.run(["docker", "compose", "-p", "freya", "-f", "docker-compose.yml", "up", "-d", "--build"])
 
 def stop_compose():
     """Stop docker-compose."""
-    subprocess.run(["docker-compose", "-p", "freya", "down"])
+    subprocess.run(["docker", "compose", "-p", "freya", "down"])
     
 def restart_compose():
     """Restart docker-compose."""
