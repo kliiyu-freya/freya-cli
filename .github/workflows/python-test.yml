@@ -33,4 +33,5 @@ jobs:
             # Step 4: Run unittests
             - name: Run tests
               run: |
+                  export PYTHONPATH=$(pwd):$PYTHONPATH
                   python ./tests/composer.test.py && python ./tests/package_manager.test.py
