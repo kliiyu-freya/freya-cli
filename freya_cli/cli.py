@@ -1,5 +1,6 @@
 import click
 import re
+import subprocess
 
 from freya_cli.composer import run_compose, stop_compose, restart_compose
 from freya_cli.package_manager import PackageManager, Package
@@ -76,6 +77,18 @@ def list():
     """List all installed packages."""
     click.echo("Listing all installed packages...")
     package_manager.list_packages()
+    
+@click.command(name="login")
+@click.option('--username', prompt=True, help="Enter your username.")
+@click.option('--password', prompt=True, hide_input=True, help="Enter your github personal access token.")
+def login(username, password):
+    """Login to ghcr which is used by Freya."""
+    click.echo("Logging in to ghcr...")
+    try:
+        subprocess.Popen(["docker", "login", "ghcr.io", "-u", username, "-p", password], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except Exception as e:
+        click.echo(f"An error occurred: {e}")
+    click.echo("Successfully logged in to ghcr.")
 
 # Register commands with the group
 cli.add_command(run)
@@ -86,6 +99,7 @@ cli.add_command(status)
 cli.add_command(install)
 cli.add_command(uninstall)
 cli.add_command(list)
+cli.add_command(login)
 
 if __name__ == '__main__':
     cli()

@@ -12,8 +12,16 @@ class DecodedPackage():
         self.data = self.decode(package)
         
     def get_package_data(self, package: Package) -> dict:
-        if self.is_default_package(package.name)[0]: return self.is_default_package(package.name)[1]
-        return core
+        if self.is_default_package(package.name)[0]:
+            return self.is_default_package(package.name)[1]
+        
+        # TODO
+        #! get package data from database
+        return {
+            'name': package.name,
+            'version': package.version,
+            'image': None
+        }
         
     def is_default_package(self, name) -> tuple[bool, dict]:
         for package in default_packages:
@@ -93,4 +101,6 @@ class PackageManager():
                 packages = yaml.load(file, Loader=yaml.FullLoader)
                 return [package for package in packages]
         except FileNotFoundError:
+            return []
+        except (ValueError, TypeError):
             return []
