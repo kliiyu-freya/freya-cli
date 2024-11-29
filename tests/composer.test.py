@@ -59,7 +59,6 @@ class TestComposer(unittest.TestCase):
         self.assertEqual(compose_file['services']['package1']['ports'], ['80:80', '443:443']) # two ports
         self.assertEqual(compose_file['services']['package4']['ports'], ['4321:4321']) # port
         self.assertEqual(compose_file['services']['package6'], {'image': 'image6', 'ports': [], 'networks': {'freya': {'ipv4_address': f"192.168.168.{len(default_packages) + 5}"}}}) # whole package])
-        self.assertEqualy(compose_file['services']['package6'], "a")
         
         
 
