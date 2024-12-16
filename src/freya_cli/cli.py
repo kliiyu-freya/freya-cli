@@ -4,6 +4,8 @@ import subprocess
 
 from freya_cli.composer import run_compose, stop_compose, restart_compose
 from freya_cli.package_manager import PackageManager, Package
+import toml
+from pathlib import Path
 
 package_manager = PackageManager()
 
@@ -33,7 +35,13 @@ def restart():
 @click.command(name="version")
 def version():
     """Display the version of the Freya CLI."""
-    click.echo("Freya CLI version 0.1.0")
+    pyproject_path = Path(__file__).resolve().parents[2] / 'pyproject.toml'
+    if pyproject_path.exists():
+        pyproject_data = toml.load(pyproject_path)
+        version = pyproject_data['project']['version']
+        click.echo(f"Freya CLI version {version}")
+    else:
+        click.echo("pyproject.toml not found. Version unknown.")
 
 @click.command(name="status")
 def status(status):
