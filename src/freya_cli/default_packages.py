@@ -30,6 +30,7 @@ system_monitor = {
     "environment": ["PROC_PATH=/host_proc", "SYS_PATH=/host_sys"],
     "cap_add": ["SYS_ADMIN"],
     "privileged": True,
+    "network_mode": "host"
 }
 
 default_packages = [

@@ -28,17 +28,12 @@ def assign_ip_addresses(packages) -> None:
                     raise ValueError("Ran out of IP addresses in the subnet")
     
     for package in packages:
-        if not package.get("ipv4") or package["ipv4"] in default_ips:
+        if not package.get("ipv4") or package["ipv4"] in default_ips and not package.get("network_mode"):
             generate_ip(package)
 
 def generate_service(package) -> dict:
     base = {
         "image": package["image"],
-        "networks": {
-            "freya": {
-                "ipv4_address": package["ipv4"]
-            }
-        }
     }
     if package.get("ports"):
         for port in package["ports"]:
@@ -53,6 +48,9 @@ def generate_service(package) -> dict:
         if key in ignore_list: continue
         if key in base: continue
         base[key] = package[key]
+        
+    if not package.get("network_mode"):
+        base["networks"] = {"freya": {"ipv4_address": package["ipv4"]}}
             
     return base
     
