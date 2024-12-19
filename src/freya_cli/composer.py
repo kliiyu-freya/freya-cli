@@ -57,7 +57,7 @@ def compose(packages: list = []) -> None:
             service_name = package["name"]
             compose_file["services"][service_name] = {
                 "image": package["image"],
-                "ports": [f"{port}:{port}" for port in package["ports"] if port] if "ports" in package else [],
+                "ports": [f"{port[0]}:{port[1]}" if isinstance(port, tuple) else f"{port}:{port}" for port in package["ports"] if port] if "ports" in package else [],
                 #"restart": "always",
                 "networks": {
                     "freya": {

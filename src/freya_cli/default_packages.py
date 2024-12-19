@@ -17,8 +17,8 @@ mqtt_broker = {
 dashboard = {
     "name": "dashboard",
     "version": "latest",
-    "image": "ghcr.io/kliiyu-freya/dashboard:latest",
-    "ports": [6673],
+    "image": "ghcr.io/kliiyu-freya/dashboard:dev",
+    "ports": [(6673, 80)],
     "ipv4": "192.168.168.4"
 }
 
