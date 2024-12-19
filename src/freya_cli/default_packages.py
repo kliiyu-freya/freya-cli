@@ -22,4 +22,19 @@ dashboard = {
     "ipv4": "192.168.168.4"
 }
 
-default_packages = [core, mqtt_broker, dashboard]
+system_monitor = {
+    "name": "system_monitor",
+    "version": "latest",
+    "image": "ghcr.io/kliiyu-freya/system_monitor:latest",
+    "volumes": ["/proc:/host_proc:ro", "/sys:/host_sys:ro"],
+    "environment": ["PROC_PATH=/host_proc", "SYS_PATH=/host_sys"],
+    "cap_add": ["SYS_ADMIN"],
+    "privileged": True,
+}
+
+default_packages = [
+    core, 
+    mqtt_broker, 
+    dashboard, 
+    system_monitor
+]

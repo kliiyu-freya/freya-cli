@@ -31,14 +31,17 @@ class DecodedPackage():
         
     def decode(self, package: Package) -> dict:
         package_data: dict = self.get_package_data(package=package)
-        
-        return {
+        output = {
             'name': package_data['name'],
             'version': package_data['version'],
-            'image': package_data['image'],
-            'ports': package_data['ports'] if 'ports' in package_data else None,
-            'ipv4': package_data['ipv4'] if 'ipv4' in package_data else None
+            'image': package_data['image']
         }
+        
+        for key in package_data:
+            if not key in output:
+                output[key] = package_data[key]
+        
+        return output
 
 
 class PackageManager():
