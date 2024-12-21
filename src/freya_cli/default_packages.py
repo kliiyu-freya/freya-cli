@@ -18,7 +18,7 @@ dashboard = {
     "name": "dashboard",
     "version": "latest",
     "image": "ghcr.io/kliiyu-freya/dashboard:dev",
-    "ports": [8089],
+    "ports": [(8089, 8080)],
     "ipv4": "192.168.168.4"
 }
 
