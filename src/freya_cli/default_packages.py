@@ -18,8 +18,11 @@ dashboard = {
     "name": "dashboard",
     "version": "latest",
     "image": "ghcr.io/kliiyu-freya/dashboard:dev",
-    "ports": [8080],
-    "ipv4": "192.168.168.4"
+    "ports": [80, 6673],
+    "network_mode": "host",
+    "restart": "always",
+    "volumes": ["./nginx/nginx.conf:/etc/nginx/nginx.conf", "./dist:/usr/share/nginx/html"],
+    "enmvironment": ["AVAHI_NAME=freya"]
 }
 
 system_monitor = {
