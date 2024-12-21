@@ -18,7 +18,7 @@ dashboard = {
     "name": "dashboard",
     "version": "latest",
     "image": "ghcr.io/kliiyu-freya/dashboard:dev",
-    "ports": [8080],
+    "ports": [8089],
     "ipv4": "192.168.168.4"
 }
 
@@ -33,19 +33,9 @@ system_monitor = {
     "network_mode": "host"
 }
 
-nginx = {
-    "name": "nginx",
-    "version": "latest",
-    "image": "nginx:latest",
-    "ports": [(8081, 80), 443],
-    "ipv4": "192.168.168.5",
-    "restart": "always"
-}
-
 default_packages = [
     core, 
     mqtt_broker, 
     dashboard, 
-    system_monitor,
-    nginx
+    system_monitor
 ]

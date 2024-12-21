@@ -36,8 +36,8 @@ def generate_service(package) -> dict:
         "image": package["image"],
     }
     if package.get("ports"):
+        base["ports"] = []
         for port in package["ports"]:
-            base["ports"] = []
             if isinstance(port, tuple):
                 base["ports"].append(f"{port[0]}:{port[1]}")
             else:
