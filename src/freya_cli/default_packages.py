@@ -22,7 +22,7 @@ dashboard = {
     "network_mode": "host",
     "restart": "always",
     "volumes": ["./nginx/nginx.conf:/etc/nginx/nginx.conf", "./dist:/usr/share/nginx/html"],
-    "enmvironment": ["AVAHI_NAME=freya"]
+    "environment": ["AVAHI_NAME=freya"]
 }
 
 system_monitor = {
