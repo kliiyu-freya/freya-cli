@@ -18,11 +18,8 @@ dashboard = {
     "name": "dashboard",
     "version": "latest",
     "image": "ghcr.io/kliiyu-freya/dashboard:dev",
-    "ports": [80, 6673],
-    "network_mode": "host",
-    "restart": "always",
-    "volumes": ["./nginx/nginx.conf:/etc/nginx/nginx.conf", "./dist:/usr/share/nginx/html"],
-    "environment": ["AVAHI_NAME=freya"]
+    "ports": [8080],
+    "ipv4": "192.168.168.4"
 }
 
 system_monitor = {
@@ -36,9 +33,19 @@ system_monitor = {
     "network_mode": "host"
 }
 
+nginx = {
+    "name": "nginx",
+    "version": "latest",
+    "image": "nginx:latest",
+    "ports": [(8081, 80), 443],
+    "ipv4": "192.168.168.5",
+    "restart": "always"
+}
+
 default_packages = [
     core, 
     mqtt_broker, 
     dashboard, 
-    system_monitor
+    system_monitor,
+    nginx
 ]
