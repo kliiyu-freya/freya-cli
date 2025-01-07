@@ -33,9 +33,16 @@ system_monitor = {
     "network_mode": "host"
 }
 
+friday = {
+    "name": "friday",
+    "version": "latest",
+    "image": "ghcr.io/kliiyu-freya/friday:latest",
+}
+
 default_packages = [
-    core, 
-    mqtt_broker, 
-    dashboard, 
-    system_monitor
+    core,
+    mqtt_broker,
+    dashboard,
+    system_monitor,
+    friday
 ]
