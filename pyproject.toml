@@ -17,7 +17,8 @@ dependencies = [
 freya = "freya_cli.cli:cli"
 fr = "freya_cli.cli:cli"
 frx = "freya_cli.cli:run"
-frz = "freya_cli.cli:stop"
+frxs = "freya_cli.cli:stop"
+frxr = "freya_cli.cli:restart"
 fri = "freya_cli.cli:install"
 frl = "freya_cli.cli:list"
 
