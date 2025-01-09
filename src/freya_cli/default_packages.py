@@ -39,10 +39,17 @@ friday = {
     "image": "ghcr.io/kliiyu-freya/friday:latest",
 }
 
+spotify = {
+    "name": "spotify",
+    "version": "latest",
+    "image": "ghcr.io/kliiyu-freya/spotify:latest",
+}
+
 default_packages = [
     core,
     mqtt_broker,
     dashboard,
     system_monitor,
-    friday
+    friday,
+    spotify
 ]
